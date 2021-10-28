@@ -3,6 +3,22 @@ Mergesort, but with absolutely no recursion (only a half-baked simulation of
 recursion)
 """
 
+def mergesort_helper(lst1, lst2):
+    # Merge the two lists
+    new_lst = []
+    while lst1 and lst2:
+        if lst1[0] < lst2[0]:
+            new_lst.append(lst1[0])
+            lst1 = lst1[1:]
+        else:
+            new_lst.append(lst2[0])
+            lst2 = lst2[1:]
+
+    new_lst += lst1
+    new_lst += lst2
+
+    return new_lst
+
 # Sort a list of numbers in increasing order
 def mergesort(lst):
     # If the list has 1 or 0 elements, it is sorted and we can return it
