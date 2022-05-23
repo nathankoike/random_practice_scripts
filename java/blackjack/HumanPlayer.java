@@ -34,20 +34,20 @@ public class HumanPlayer extends Player {
 
   // Play a hand
   public void playHand(Deck deck) {
-    String action = "";
+    String action = "h";
     this.addCard(deck.draw());
 
     // While the player wants to continue
     while (action.charAt(0) != 'S' && action.charAt(0) != 's') {
       this.addCard(deck.draw());
 
-      // System.out.println("Your hand: " + this.getHand().toArray().toString());
-      // System.out.println("    Total: %d", this.sumHand());
+      System.out.println("Your hand: " + getHand());
+      System.out.println("    Total: " + this.sumHand());
 
       // If the player lost or is at 21, prevent them from continuing
       if (this.sumHand() > 20) break;
 
-      // System.out.print("Hit (H) or Stand (S): ");
+      System.out.print("Hit (H) or Stand (S): ");
       action = this.sc.nextLine();
     }
   }
