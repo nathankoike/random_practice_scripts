@@ -9,7 +9,7 @@ public class Main {
     HumanPlayer player = new HumanPlayer("n", 500);
     Dealer dealer = new Dealer();
 
-    Player[] players = {player};
+    HumanPlayer[] players = {player};
 
     game.run(players);
   }
