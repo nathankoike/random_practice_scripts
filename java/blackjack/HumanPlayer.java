@@ -1,16 +1,19 @@
 package blackjack;
 
+import java.util.Scanner;
+
 public class HumanPlayer extends Player {
-  public String name;
+  protected Scanner sc = new Scanner(System.in);
   protected int balance;
   protected int wager;
+  public String name;
 
   // Make a human player
   public HumanPlayer(String name, int balance) {
+    super();
+
     this.name = name;
     this.balance = balance;
-
-    super();
   }
 
   // How much money does the player have?
@@ -26,16 +29,26 @@ public class HumanPlayer extends Player {
   // Update the player's balance based on the outcome of the round
   public void updateBalance(int outcome) {
     // Only modify the balance if the player won or lost (0 is falsy)
-    if (outcome) this.balance += outcome * this.wager;
+    if (outcome != 0) this.balance += outcome * this.wager;
   }
 
   // Play a hand
-  public void playHand() {
+  public void playHand(Deck deck) {
     String action = "";
+    this.addCard(deck.draw());
 
     // While the player wants to continue
-    while (action.charAt(0) != 'N' && action.charAt(0) != 'n') {
-      
+    while (action.charAt(0) != 'S' && action.charAt(0) != 's') {
+      this.addCard(deck.draw());
+
+      // System.out.println("Your hand: " + this.getHand().toArray().toString());
+      // System.out.println("    Total: %d", this.sumHand());
+
+      // If the player lost or is at 21, prevent them from continuing
+      if (this.sumHand() > 20) break;
+
+      // System.out.print("Hit (H) or Stand (S): ");
+      action = this.sc.nextLine();
     }
   }
 }

@@ -1,12 +1,8 @@
 package blackjack;
 
 public class Game {
-  // The winner of this game
-  Player this.winner = null;
+  public Game() {
 
-  // Reset the winner of the game
-  public static void reset() {
-    this.winner = null;
   }
 
   // Play a whole game

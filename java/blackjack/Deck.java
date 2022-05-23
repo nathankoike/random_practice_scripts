@@ -1,46 +1,55 @@
 package blackjack;
 
+import java.util.List;
 import java.util.LinkedList;
 import java.util.Random;
 
 public class Deck {
-  protected Random rand = new Random();
-  protected int copies = 1
+  protected static Random rand = new Random();
+  protected static int copies = 1;
   public static List<String> cards = new LinkedList<String>();
 
   // Build one deck
   protected static void buildDeck() {
-    for (char suit : "SCDH") {
-      for (
-        String value :
-        {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"})
-          this.cards.add(value + suit)
+    String[] values = {
+      "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"
+    };
+
+    char[] suits = {'S', 'D', 'H', 'C'};
+
+    for (char suit : suits) {
+      for (String value : values) cards.add(value + suit);
     }
   }
 
   // Reset the deck to its initial state
   public static void resetDeck() {
-    this.cards.clear();
+    cards.clear();
 
-    for (int i = 0; i < this.copies; i++) this.buildDeck();
+    for (int i = 0; i < copies; i++) buildDeck();
   }
 
-  // Combine as many decks as desired
-  public Deck(int copies = null) {
-    // If a custom number of copies is provided, assign it
-    if (copies) this.copies = copies;
+  public Deck() {
+    // Build the deck
+    resetDeck();
+  }
+
+  public Deck(int decks) {
+    copies = decks;
 
     // Build the deck
-    this.resetDeck();
+    resetDeck();
+  }
+
+  // Is the deck empty?
+  public static boolean empty() {
+    return cards.size() > 0;
   }
 
   // Draw a random card from the deck
   public static String draw() {
-    return this.cards.remove(this.rand.nextInt(this.cards.size()));
-  }
+    if (empty()) resetDeck();
 
-  // Is the deck empty?
-  public static bool empty() {
-    return this.cards.size() > 0;
+    return cards.remove(rand.nextInt(cards.size()));
   }
 }
