@@ -46,7 +46,7 @@ public abstract class Player {
 
     // If the player has aces, increase the value of the sum as much as possible
     if (aceCount > 0)
-      for (; 11 - sum > 0 && aceCount > 0; sum += 10 * (aceCount - --aceCount));
+      for (; 12 - sum > 0 && aceCount > 0; sum += 10 * (aceCount - --aceCount));
 
     return sum;
   }

@@ -34,6 +34,8 @@ public class HumanPlayer extends Player {
 
   // Play a hand
   public void playHand(Deck deck) {
+    this.hand.clear();
+
     String action = "h";
     this.addCard(deck.draw());
 
@@ -43,6 +45,7 @@ public class HumanPlayer extends Player {
 
       System.out.println("Your hand: " + getHand());
       System.out.println("    Total: " + this.sumHand());
+      System.out.println();
 
       // If the player lost or is at 21, prevent them from continuing
       if (this.sumHand() > 20) break;
