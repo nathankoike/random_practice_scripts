@@ -43,7 +43,7 @@ public class Deck {
 
   // Is the deck empty?
   public static boolean empty() {
-    return cards.size() > 0;
+    return cards.size() < 1;
   }
 
   // Draw a random card from the deck
